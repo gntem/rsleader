@@ -1,0 +1,18 @@
+[package]
+name = "leaderboard"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]] # Bin to run the Leaderboard gRPC server
+name = "leaderboards-server"
+path = "src/server.rs"
+
+[dependencies]
+tonic = "0.7"
+prost = "0.10"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+async-trait = "0.1.56"
+redis = { version = "0.17.0", features = ["tokio-comp"] }
+
+[build-dependencies]
+tonic-build = "0.7"

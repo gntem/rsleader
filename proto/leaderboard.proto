@@ -1,0 +1,40 @@
+syntax = "proto3";
+package leaderboard;
+
+message ScoreObj {
+  string username = 1;
+  int64 score = 2;
+}
+
+message LeaderboardObj {
+  string id = 1;
+  repeated ScoreObj scores = 3;
+}
+
+message ListLeaderboardScoresInput {
+  string id = 1;
+}
+message ListLeaderboardScoresReply {
+  string id = 1;
+  repeated ScoreObj scores = 2;
+};
+
+message ListLeaderboardsInput {}
+message ListLeaderboardsReply {
+  repeated string result = 1;
+}
+
+message UpdateScoreInput {
+  string id = 1;
+  ScoreObj score = 2;
+}
+
+message UpdateScoreReply {
+  ScoreObj score = 1;
+}
+
+service Leaderboard {
+  rpc ListLeaderboardScores(ListLeaderboardScoresInput) returns (ListLeaderboardScoresReply);
+  rpc ListLeaderboards(ListLeaderboardsInput) returns (ListLeaderboardsReply);
+  rpc UpdateScore(UpdateScoreInput) returns (UpdateScoreReply);
+}
